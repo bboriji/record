@@ -4,8 +4,6 @@ services:
   backend:
     build:
       context: ./backend
-    env_file:
-      - ./backend/.env
     command: ["yarn", "start"]
     volumes:
       - ./backend:/server

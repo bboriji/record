@@ -7,4 +7,4 @@ RUN yarn;
 
 CMD ["node", "www.js"]
 
-EXPOSE 3000
+EXPOSE 13000

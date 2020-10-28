@@ -6,10 +6,16 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "typeorm": "^0.2.28"
+    "pg": "^8.4.2",
+    "postgres": "^1.0.2",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
   },
   "scripts": {
     "dev": "node bin/www.js",
     "start": "node bin/www.js"
+  },
+  "devDependencies": {
+    "sequelize-auto": "^0.6.5"
   }
 }

@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    command: ["yarn", "start"]
+    volumes:
+      - ./backend:/server
+    ports:
+      - 13000:13000
+      - 9229:9229
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:12.4-alpine
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+      POSTGRES_DB: record
+    ports:
+      - 5432:5432
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+volumes:
+  dbdata:
+    driver: local

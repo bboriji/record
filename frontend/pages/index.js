@@ -1,13 +1,14 @@
 import 'next'
 import styles from '../styles/Home.module.css'
-import { Card } from 'antd'
+import Header from '../components/header'
 
 import "antd/dist/antd.css";
 
 export default function Home() {
   return (
-    <Card>
-      <p>안녕안녕</p>
-    </Card>
+    
+    <Header>
+      <p>안녕</p>
+    </Header>
   )
 }

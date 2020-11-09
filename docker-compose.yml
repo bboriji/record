@@ -6,10 +6,9 @@ services:
       context: ./backend
     command: ["yarn", "start"]
     volumes:
-      - ./backend:/server
+      - ./backend:/dist
     ports:
       - 3000:3000
-      - 9229:9229
     depends_on:
       - proxy
 

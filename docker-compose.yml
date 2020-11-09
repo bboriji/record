@@ -9,8 +9,6 @@ services:
       - ./backend:/dist
     ports:
       - 3000:3000
-    depends_on:
-      - proxy
 
   proxy:
     image: nginx:mainline
@@ -22,3 +20,5 @@ services:
     ports:
       - 443:443
       - 80:80
+    depends_on:
+      - backend

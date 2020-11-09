@@ -1,10 +1,4 @@
-const express = require("express");
-const router = express.Router();
-/**
- * health check root path
- */
-router.get("/", (req, res) => {
-  res.send()
-});
+const postRouter = require('./post')
+const userRouter = require('./user')
 
-module.exports = router;
+module.exports = { postRouter, userRouter }

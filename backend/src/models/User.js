@@ -16,6 +16,15 @@ module.exports = function(sequelize, DataTypes) {
     passwd: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    profile: {
+      type: DataTypes.STRING,
+    },
+    githubLink: {
+      type: DataTypes.STRING,
+    },
+    name: {
+      type: DataTypes.STRING,
     }
   }, {
     sequelize,
@@ -23,5 +32,5 @@ module.exports = function(sequelize, DataTypes) {
     schema: 'public',
     timestamps: true,
     paranoid: true
-    });
+  });
 };

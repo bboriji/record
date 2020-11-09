@@ -4,7 +4,11 @@ import Header from '../components/header'
 
 import "antd/dist/antd.css";
 
+import useSWR from 'swr'
+
 export default function Home() {
+  const { data, error } = useSWR('/api', fetcher)
+
   return (
     
     <Header>

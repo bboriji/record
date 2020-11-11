@@ -4,15 +4,19 @@ import Header from '../components/header'
 
 import "antd/dist/antd.css";
 
-import useSWR from 'swr'
+import useRequest from '../hooks/useRequest'
 
 export default function Home() {
-  const { data, error } = useSWR('/api', fetcher)
+  const { data } = useRequest({
+    method: 'GET',
+    url: '/posts',
+  })
+
+  console.log(data)
 
   return (
-    
     <Header>
-      <p>안녕</p>
+      {data ? data.map(d => <p>{d.title}</p>) : <p></p>}
     </Header>
   )
 }

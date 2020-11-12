@@ -5,6 +5,6 @@ WORKDIR /dist
 
 RUN yarn;
 
-CMD ["node", "www.js"]
+CMD ["yarn", "start"]
 
 EXPOSE 13000

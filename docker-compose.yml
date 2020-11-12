@@ -8,7 +8,7 @@ services:
     volumes:
       - ./backend:/dist
     ports:
-      - 3000:3000
+      - 13000:13000
 
   proxy:
     image: nginx:mainline

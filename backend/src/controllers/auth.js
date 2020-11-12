@@ -7,6 +7,8 @@ const {
   registerUser 
 } = require('../core/user');
 
+const { verifyJWT, generateJWT } = require("../utils/jwt");
+
 /**
  * 로그인 여부 확인용 me 쿼리
  */

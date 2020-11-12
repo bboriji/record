@@ -14,7 +14,7 @@ const { verifyJWT, generateJWT } = require("../utils/jwt");
  */
 router.post("/me", async (req, res) => {
   const authToken = req.cookies["record_auth"]
-  
+
   if (!authToken) {
     return res.sendStatus(401)
   }
@@ -23,7 +23,7 @@ router.post("/me", async (req, res) => {
   const user = await getUserByEmailWithNoPrivateInfo(email)
   
   if (user) {
-    res.send(user)
+    return res.send(user)
   }
   res.sendStatus(401)
 })

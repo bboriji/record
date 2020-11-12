@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
 
   if (user) {
     const jwt = await generateJWT(user)
-    return res.cookie("record_auth", jwt).send()
+    return res.cookie("record_auth", jwt, {sameSite: "none", secure: true}).send()
   }
 
   res.sendStatus(401)

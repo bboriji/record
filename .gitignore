@@ -1,3 +1,4 @@
+*.key
 **/config.json
 *.pem
 proxy/ssl/**/*.*

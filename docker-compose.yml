@@ -7,6 +7,7 @@ services:
     command: ["yarn", "start"]
     volumes:
       - /home/ubuntu/config.json:/dist/src/config/config.json
+      - /home/ubuntu/jwt:/dis/src/etc/jwt
     ports:
       - 13000:13000
 

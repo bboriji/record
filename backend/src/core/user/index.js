@@ -10,6 +10,15 @@ const getUserWithNoPrivateInfo = async (id) => {
   return user
 }
 
+const getUserByEmailWithNoPrivateInfo = async (email) => {
+  const user = await User.findOne({
+    where: { email },
+    attributes: { exclude: ['passwd'] }
+  })
+
+  return user
+}
+
 /**
  * 로그인 함수, 성공시 유저 인스턴스, 실패시 null 리턴
  * @param {string} email 
@@ -27,7 +36,7 @@ const loginUser = async (email, password) => {
     const {
       passwd,
       ...others
-    } = user.dataValues
+    } = existUser.dataValues
     return others
   }
 
@@ -59,4 +68,9 @@ const registerUser = async (email, password, name) => {
   return others
 }
 
-module.exports = { getUserWithNoPrivateInfo,loginUser, registerUser }
+module.exports = { 
+  getUserWithNoPrivateInfo, 
+  getUserByEmailWithNoPrivateInfo, 
+  loginUser, 
+  registerUser 
+}

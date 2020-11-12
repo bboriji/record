@@ -13,13 +13,15 @@ const { verifyJWT, generateJWT } = require("../utils/jwt");
  * 로그인 여부 확인용 me 쿼리
  */
 router.post("/me", async (req, res) => {
-  const authToken = req.cookies["record_auth"]
+  const cookieToken = req.cookies["record_auth"]
+  const { bodyToken } = req.body
 
-  if (!authToken) {
+  if (!authToken || !token) {
     return res.sendStatus(401)
   }
 
-  const { email } = await verifyJWT(authToken);
+  const token = cookieToken ? cookieToken : bodyToken
+  const { email } = await verifyJWT(token);
   const user = await getUserByEmailWithNoPrivateInfo(email)
   
   if (user) {

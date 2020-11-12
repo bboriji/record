@@ -40,7 +40,6 @@ router.post("/login", async (req, res) => {
     return res.cookie("record_auth", jwt, {
       sameSite: "none", 
       secure: true, 
-      httpOnly: true
     }).send()
   }
 

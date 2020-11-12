@@ -1,11 +1,13 @@
 import axios from 'axios'
 import useSWR from 'swr'
 
+import { baseURL } from '../common/api'
+
 // useRequest.js
 export default function useRequest(request, config) {
   const requestWithBaseURL = {
     ...request,
-    baseURL: 'https://fog.naora.dev/api'
+    baseURL
   }
 
   const { data: response, error, isValidating, revalidate } = useSWR(

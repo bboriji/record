@@ -1,6 +1,9 @@
 import 'next'
+import axios from 'axios'
+import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 
+import { baseURL } from '../common/api'
 import { mediaQuery } from '../common/media'
 import { tabSize, screenSize, mainBlue } from '../common/constant'
 
@@ -47,13 +50,38 @@ const Title = styled.a`
 `;
 
 export default function Header() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    axios
+      .post(
+        `${baseURL}/me`, 
+        { }, 
+        { withCredentials: true },
+      )
+      .then((value) => {
+        setUser(value.data)
+      })
+      .catch((e) => {
+        console.log('unauthorized')
+      })
+  }, [])
+
+  useEffect(() => {
+    console.log(user)
+  },[user])
+
   return (
     <HeaderContainer>
       <HeaderContentsContainer>
         <Title href={"/"}>Record</Title>
         <HeaderLoginContainer>
-          <LoginTabButton>로그인</LoginTabButton>
-          <LoginTabButton>회원가입</LoginTabButton>
+          {user ? 
+            (<LoginTabButton href={`/user/${user.id}`}>{user.name}</LoginTabButton>) : 
+            (<>
+              <LoginTabButton href={"/login"}>로그인</LoginTabButton>
+              <LoginTabButton href={"/register"}>회원가입</LoginTabButton>
+            </>)}
         </HeaderLoginContainer>
       </HeaderContentsContainer>
     </HeaderContainer>

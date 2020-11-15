@@ -1,26 +1,37 @@
 import axios from 'axios'
-import useSWR from 'swr'
-
+import { useEffect, useState } from 'react'
 import { baseURL } from '../common/api'
 
 // useRequest.js
-export default function useRequest(request, config) {
-  const requestWithBaseURL = {
-    ...request,
-    baseURL
-  }
+export const useRequest = ({
+  url,
+  method,
+  body = {}
+}) => {
+  const [fetch, setFetch] = useState(true)
+  const [response, setResponse] = useState()
 
-  const { data: response, error, isValidating, revalidate } = useSWR(
-    JSON.stringify(requestWithBaseURL),
-    () => axios(requestWithBaseURL),
-    config
-  );
+  useEffect(() => {
+    if (fetch) {
+      setFetch(false)
+      axios
+        .all({
+          url, 
+          method,
+          data: body,
+          baseURL,
+          withCredentials: true,
+        })
+        .then(value => {
+          console.log(value)
+          setResponse(value)
+        })
+        .catch(value => {
+          console.log(value)
+          setResponse(value)
+        })
+    }
+  }, [fetch])
 
-  return {
-    data: response && response.data,
-    response,
-    error,
-    isValidating,
-    revalidate,
-  };
+  return [response, setFetch]
 }

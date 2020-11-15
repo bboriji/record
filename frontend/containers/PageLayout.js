@@ -28,7 +28,7 @@ export const ContentsContainer = styled.div`
   }
 `
 
-const PageTemplate = ({ children, title }) => {
+export default function PageLayout({ children, title }) {
   return (
     <>
       <Head>
@@ -44,5 +44,3 @@ const PageTemplate = ({ children, title }) => {
     </>
   )
 }
-
-export default PageTemplate

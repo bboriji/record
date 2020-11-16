@@ -1,7 +1,7 @@
 import 'next'
 import axios from 'axios'
 
-import { Card } from 'antd'
+import { Space, Card } from 'antd'
 import PageTemplate from '../containers/PageLayout'
 
 export default function Home({ data }) {
@@ -9,12 +9,15 @@ export default function Home({ data }) {
 
   return (
     <PageTemplate title={'Record'}>
+      <Space direction="horizontal">
         {data ? data.map(d => (
-          <Card>
-            <h3>{d.title}</h3>
+          <Card title = {d.title} style={{ width: 300, height: 300, overflow: "hidden", textOverflow: "ellipsis"}}>
             <div>{d.contents}</div>
+            <div>{d.userid}</div>
+            <div>{d.createdAt}</div>
           </Card>
         )) : <p>포스트가 없습니다.</p>}
+      </Space> 
     </PageTemplate>
   )
 }

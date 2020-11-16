@@ -5,10 +5,12 @@ import axios from 'axios'
 import PageLayout from '../containers/PageLayout'
 
 export default function Home({ data }) {
+  const { posts } = data
+
   return (
     <PageLayout title={'Record'}>
       {
-        data.posts ? data.posts.map((post) => {
+        posts ? posts.map((post) => {
           return (
             <Card title={post.title} bordered={true}>
               <p>{post.contents}</p>
@@ -22,10 +24,10 @@ export default function Home({ data }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const { data: posts } = await axios.get("https://fog.naora.dev/api/posts")
 
   return {
-    props: { data: { posts, user } }, // will be passed to the page component as props
+    props: { data: { posts } }, // will be passed to the page component as props
   }
 }

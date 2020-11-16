@@ -7,12 +7,14 @@ import styled from 'styled-components';
 
 import { baseURL } from '../common/api';
 
+<div></div>
+
 const LoginLayout = styled.div`
   width: 100%;
   height: 100%;
-  align-items: center;
-  justify-content: center;
   display: flex;
+  justify-content: center;
+  align-content: center;
 `
 
 const InputContainer = styled.div`
@@ -73,7 +75,7 @@ export default function Login() {
             value={password}
             onChange={(e) => { setPassword(e.target.value) }}
           />
-          <Input type={"submit"} onClick={() => setFetch(true)}></Input>
+          <Button onClick={() => setFetch(true)}>로그인</Button>
           <Button href={'/register'}>회원가입</Button>
         </form>
       </InputContainer>

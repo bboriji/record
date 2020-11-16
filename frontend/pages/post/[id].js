@@ -1,8 +1,6 @@
 import 'next'
 import axios from 'axios'
-
-import { Card } from 'antd'
-import PageTemplate from '../containers/PageLayout'
+import PageLayout from '../../containers/PageLayout'
 
 export default function Home({ data }) {
   console.log(data)

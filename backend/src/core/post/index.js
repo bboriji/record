@@ -10,9 +10,9 @@ const getPost = async (id) => {
   })
 }
 
-const getUserPostsByUserId = async (userId) => {
+const getUserPostsByUserId = async (userid) => {
   const post = await Post.findAll({
-    where: { userId }
+    where: { userid }
   })
   // 만약 포스트가 없으면 null 을 리턴한다
   if(post.length === 0) {

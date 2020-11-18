@@ -16,22 +16,28 @@ router.get("/post/:id", async (req, res) => {
 })
 
 router.post("/post/write", async (req, res) => {
-  const authToken = req.cookies["record_auth"]
+  try {
+    const authToken = req.cookies["record_auth"]
 
-  if (!authToken) {
-    return res.sendStatus(401)
+    if (!authToken) {
+      return res.sendStatus(401)
+    }
+    
+    const data = await verifyJWT(authToken);
+    console.log(data)
+    const { id } = data
+    const { postid, title, contents } = req.body
+    const post = await createAndUpdatePost({ 
+      postid,
+      title,
+      contents,
+      userid: id
+    })
+
+    res.send(post)
+  } catch(err) {
+    res.sendStatus(500)
   }
-  
-  const { id } = await verifyJWT(authToken);
-  const { postid, title, contents } = req.body
-  const post = await createAndUpdatePost({ 
-    postid,
-    title,
-    contents,
-    userid: id
-  })
-
-  res.send(post)
 })
 
 module.exports = router;

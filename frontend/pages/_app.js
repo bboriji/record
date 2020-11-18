@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import "../styles/post.css"
 import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }) {

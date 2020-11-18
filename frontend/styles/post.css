@@ -1,0 +1,26 @@
+.post .post_img{
+    position: relative;
+    width: 100%
+}
+
+.post .post_title{
+    background-color: white;
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: black;
+}
+
+.post .post_contents{
+    font-size: 12px;
+    color: dimgray;
+}
+
+.post .post_user{
+    font-size: 10px;
+    color: blanchedalmond;
+}
+
+.post .post_createdAt{
+    font-size: 10px;
+    color: cornsilk;
+}

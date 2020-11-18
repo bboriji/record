@@ -26,7 +26,7 @@ export default function PostEditContainer() {
       editorRef.current?.scrollHeight &&
       scrollHeight - clientHeight === scrollTop
     ) {
-      viewerRef.current.scrollTop = editorRef.current.scrollHeight
+      viewerRef.current.scrollTop = viewerRef.current.scrollHeight
     }
   }, [contents]);
 

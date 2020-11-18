@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { mainBlue } from '../../common/constant'
 
 export const PostContentsEditorContainer = styled.div`
   width: 50%;

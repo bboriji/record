@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { getPosts, getPost } = require('../core/post')
+const { getPosts, getPost, createAndUpdatePost } = require('../core/post')
 
 router.get("/posts", async (req, res) => {
   const posts = await getPosts()
@@ -11,6 +11,11 @@ router.get("/posts", async (req, res) => {
 router.get("/post/:id", async (req, res) => {
   const postId = req.params['id']
   const post = await getPost(postId)
+  res.send(post)
+})
+
+router.post("/post/write", async (req, res) => {
+  const post = await createAndUpdatePost(req.body)
   res.send(post)
 })
 

@@ -21,10 +21,20 @@ const getUserPostsByUserId = async (userid) => {
   return post
 }
 
-const createAndEditPost = async (postDTO) => {
-  const { title, contents, userid } = postDTO
-  
-  const post = await Post.create({ title, contents, userid })
+const createAndUpdatePost = async (postDTO) => {
+  const { postid, title, contents, userid } = postDTO
+
+  let post = null;
+
+  if (postid !== undefined) {
+    post = await Post.update({ title, contents }, {
+      where: {
+        id: postid
+      }
+    })
+  } else {
+    post = await Post.create({ title, contents, userid })
+  }
 
   return post;
 }
@@ -33,5 +43,5 @@ module.exports = {
   getPosts, 
   getPost, 
   getUserPostsByUserId, 
-  createAndEditPost 
+  createAndUpdatePost 
 }

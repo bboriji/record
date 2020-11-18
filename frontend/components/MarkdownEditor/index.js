@@ -8,7 +8,7 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
 const MarkdownEditorBlock = styled.div`
-  height: 100%;
+  flex: 1; /* flex: 1 1 0 */
   width: 100%;
 
   .CodeMirror {

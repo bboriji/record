@@ -1,13 +1,15 @@
 import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
-import * as S from "./style";
+import axios from 'axios'
 
+import * as S from "./style";
 import PostContentsEditor from '../../components/PostContentsEditor'
 import PostContentsViewer from '../../components/PostContentsViewer'
 
 export default function PostEditContainer({ initPost }) {
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
+  const [submit, setSubmit] = useState(false);
 
   const viewerRef = useRef(null)
   const editorRef = useRef(null)
@@ -25,6 +27,15 @@ export default function PostEditContainer({ initPost }) {
     }
   }, [contents]);
 
+  useEffect(() => {
+    if (!submit) return;
+
+    axios.post('')
+    alert('글쓰기')
+    setSubmit(false)
+  
+  }, [submit, setSubmit])
+
   return (
     <>
       <Head>
@@ -34,11 +45,13 @@ export default function PostEditContainer({ initPost }) {
       </Head>
       <S.PostEditContainer>
         <PostContentsEditor 
+          initPost={initPost}
           editorRef={editorRef}
           initialTitle={initPost?.title ? initPost.title : ""} 
           initialMarkdown={initPost?.contents ? initPost.contents : ""}
           onChangeTitle={setTitle} 
           onChangeMarkdown={setContents}
+          onClickSubmit={setSubmit}
         />
         <PostContentsViewer 
           viewerRef={viewerRef}

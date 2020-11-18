@@ -1,8 +1,5 @@
 import * as S from "./style";
-import { useState, useEffect } from 'react'
-
 import { Button } from 'antd'
-
 import dynamic from 'next/dynamic'
 const  MarkdownEditor = dynamic(() => import('../MarkdownEditor'), {ssr: false})
 
@@ -17,7 +14,7 @@ const PostTitleEditor = ({ initText, onChangeTitle }) => (
   </>
 )
 
-const PostEditHeader = () => (
+const PostEditHeader = ({ onClickSubmit, isNewPost }) => (
     <S.PostEditHeaderContainer>
       <Button style={{
         fontSize: '1rem',
@@ -29,28 +26,34 @@ const PostEditHeader = () => (
         style={{
           marginLeft: "auto", 
           fontSize: '1rem', 
-          padding: "0px 1.25rem"}}
-      >글쓰기</Button>
+          padding: "0px 1.25rem"
+        }}
+        onClick={() => onClickSubmit(true)}
+      >{isNewPost ? `수정하기` : `글쓰기`}</Button>
     </S.PostEditHeaderContainer>
   )
 
 export default function PostContentsEditor({
+    initPost,
     editorRef,
     onChangeTitle,  
     initialTitle,  
     onChangeMarkdown,
     initialMarkdown,
+    onClickSubmit,
   }) {
     return (
       <S.PostContentsEditorContainer>
-        <PostEditHeader></PostEditHeader>
-        <PostTitleEditor initText={initialTitle} onChangeTitle={onChangeTitle} />
-        <S.PostContentsEditor ref={editorRef}>
-          <MarkdownEditor 
-            onChangeMarkdown={onChangeMarkdown}
-            initialMarkdown={initialMarkdown}
-          />
-        </S.PostContentsEditor>
+        <PostEditHeader onClickSubmit={onClickSubmit} isNewPost={!!initPost}/>
+        <S.ScrollableEditor>
+          <PostTitleEditor initText={initialTitle} onChangeTitle={onChangeTitle} />
+          <S.PostContentsEditor ref={editorRef}>
+            <MarkdownEditor 
+              onChangeMarkdown={onChangeMarkdown}
+              initialMarkdown={initialMarkdown}
+            />
+          </S.PostContentsEditor>
+        </S.ScrollableEditor>
       </S.PostContentsEditorContainer>
     )
   }

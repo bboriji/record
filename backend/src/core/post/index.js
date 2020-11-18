@@ -21,4 +21,17 @@ const getUserPostsByUserId = async (userid) => {
   return post
 }
 
-module.exports = { getPosts, getPost, getUserPostsByUserId }
+const createAndEditPost = async (postDTO) => {
+  const { title, contents, userid } = postDTO
+  
+  const post = await Post.create({ title, contents, userid })
+
+  return post;
+}
+
+module.exports = { 
+  getPosts, 
+  getPost, 
+  getUserPostsByUserId, 
+  createAndEditPost 
+}

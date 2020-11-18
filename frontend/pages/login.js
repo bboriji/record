@@ -7,8 +7,6 @@ import styled from 'styled-components';
 
 import { baseURL } from '../common/api';
 
-<div></div>
-
 const LoginLayout = styled.div`
   width: 100%;
   height: 100%;

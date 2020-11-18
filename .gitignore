@@ -1,8 +1,7 @@
 *.key
-**/config.json
+config.json
 *.pem
 proxy/ssl/**/*.*
-backend/src/config/config.json
 
 # Logs
 logs

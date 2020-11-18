@@ -29,6 +29,10 @@ const loginUser = async (email, password) => {
     where: { email }
   })
 
+  if (!existUser) {
+    return null
+  }
+
   const result = await bcrypt.compare(password, existUser.passwd)
   
   // 로그인 성공시, User 인스턴스 넘겨줌

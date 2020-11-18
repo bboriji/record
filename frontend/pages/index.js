@@ -1,11 +1,12 @@
 import 'next'
+import { Card } from 'antd'
 import axios from 'axios'
 
 import { Space, Card } from 'antd'
 import PageTemplate from '../containers/PageLayout'
 
 export default function Home({ data }) {
-  console.log(data)
+  const { posts } = data
 
   return (
     <PageTemplate title={'Record'}>
@@ -23,9 +24,9 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const { data } = await axios.get("https://fog.naora.dev/api/posts")
+  const { data: posts } = await axios.get("https://fog.naora.dev/api/posts")
 
   return {
-    props: { data }, // will be passed to the page component as props
+    props: { data: { posts } }, // will be passed to the page component as props
   }
 }

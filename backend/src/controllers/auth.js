@@ -32,12 +32,18 @@ router.post("/me", async (req, res) => {
  * 로그인 하는 메소드
  */
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body 
+  const { email, password } = req.body
+  if (email === undefined || password === undefined)
+    return res.sendStatus(401)
+  
   const user = await loginUser(email, password)
 
   if (user) {
     const jwt = await generateJWT(user)
-    return res.cookie("record_auth", jwt).send()
+    return res.cookie("record_auth", jwt, {
+      sameSite: "none", 
+      secure: true, 
+    }).send(user)
   }
 
   res.sendStatus(401)

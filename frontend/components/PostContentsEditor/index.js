@@ -6,11 +6,11 @@ import { Button } from 'antd'
 import dynamic from 'next/dynamic'
 const  MarkdownEditor = dynamic(() => import('../MarkdownEditor'), {ssr: false})
 
-const PostTitleEditor = ({ text, onChangeTitle }) => (
+const PostTitleEditor = ({ initText, onChangeTitle }) => (
   <>
     <S.PostTitleEditor
       type={"text"} 
-      value={text}
+      defaultValue={initText}
       onChange={(event) => onChangeTitle(event.target.value)}
       placeholder={"제목을 입력하세요."}
     />
@@ -41,17 +41,10 @@ export default function PostContentsEditor({
     onChangeMarkdown,
     initialMarkdown,
   }) {
-    const [titleValue, setTitleValue] = useState()
-    useEffect(() => {
-      if(initialTitle) {
-        setTitleValue(titleValue)
-      }
-    }, [initialTitle, setTitleValue])
-
     return (
       <S.PostContentsEditorContainer>
         <PostEditHeader></PostEditHeader>
-        <PostTitleEditor text={titleValue} onChangeTitle={onChangeTitle} />
+        <PostTitleEditor initText={initialTitle} onChangeTitle={onChangeTitle} />
         <S.PostContentsEditor ref={editorRef}>
           <MarkdownEditor 
             onChangeMarkdown={onChangeMarkdown}

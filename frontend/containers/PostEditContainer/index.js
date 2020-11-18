@@ -5,7 +5,7 @@ import * as S from "./style";
 import PostContentsEditor from '../../components/PostContentsEditor'
 import PostContentsViewer from '../../components/PostContentsViewer'
 
-export default function PostEditContainer() {
+export default function PostEditContainer({ initPost }) {
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
 
@@ -13,12 +13,7 @@ export default function PostEditContainer() {
   const editorRef = useRef(null)
   
   useEffect(() => {
-    console.log(editorRef)
     const {scrollHeight, scrollTop, clientHeight} = editorRef.current
-
-    scrollHeight: 940
-    scrollTop: 765
-    clientHeight: 175
 
     if (
       viewerRef && 
@@ -40,8 +35,8 @@ export default function PostEditContainer() {
       <S.PostEditContainer>
         <PostContentsEditor 
           editorRef={editorRef}
-          initialTitle={""} 
-          initialMarkdown={""}
+          initialTitle={initPost?.title ? initPost.title : ""} 
+          initialMarkdown={initPost?.contents ? initPost.contents : ""}
           onChangeTitle={setTitle} 
           onChangeMarkdown={setContents}
         />

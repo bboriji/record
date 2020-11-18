@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { getPosts, getPost, createAndUpdatePost } = require('../core/post')
+const { verifyJWT } = require("../utils/jwt");
 
 router.get("/posts", async (req, res) => {
   const posts = await getPosts()
@@ -15,7 +16,21 @@ router.get("/post/:id", async (req, res) => {
 })
 
 router.post("/post/write", async (req, res) => {
-  const post = await createAndUpdatePost(req.body)
+  const authToken = req.cookies["record_auth"]
+
+  if (!authToken) {
+    return res.sendStatus(401)
+  }
+  
+  const { id } = await verifyJWT(authToken);
+  const { postid, title, contents } = req.body
+  const post = await createAndUpdatePost({ 
+    postid,
+    title,
+    contents,
+    userid: id
+  })
+
   res.send(post)
 })
 

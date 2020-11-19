@@ -3,11 +3,7 @@ import { useEffect, useState } from 'react'
 import { baseURL } from '../common/api'
 
 // useRequest.js
-export const useRequest = ({
-  url,
-  method,
-  body = {}
-}) => {
+export const useRequest = ({ url, method, body = {} }) => {
   const [fetch, setFetch] = useState(true)
   const [response, setResponse] = useState()
 
@@ -16,17 +12,17 @@ export const useRequest = ({
       setFetch(false)
       axios
         .all({
-          url, 
+          url,
           method,
           data: body,
           baseURL,
           withCredentials: true,
         })
-        .then(value => {
+        .then((value) => {
           console.log(value)
           setResponse(value)
         })
-        .catch(value => {
+        .catch((value) => {
           console.log(value)
           setResponse(value)
         })

@@ -7,9 +7,9 @@ export const me = async (req) => {
 
   try {
     const { data } = await axios.post(
-      `${baseURL}/me`, 
-      { token: data }, 
-      { withCredentials: true},
+      `${baseURL}/me`,
+      { token: data },
+      { withCredentials: true },
     )
     return data
   } catch (error) {

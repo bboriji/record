@@ -1,6 +1,6 @@
 import 'next'
 import axios from 'axios'
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { baseURL } from '../common/api'
@@ -12,7 +12,7 @@ const HeaderContainer = styled.div`
   height: 4rem;
   background: ${mainBlue};
   box-shadow: 0px 0px 10px 5px gray;
-`;
+`
 
 const HeaderContentsContainer = styled.div`
   display: flex;
@@ -29,17 +29,17 @@ const HeaderContentsContainer = styled.div`
   ${mediaQuery(tabSize.small)} {
     width: calc(100% - 2rem);
   }
-`;
+`
 
 const HeaderLoginContainer = styled.div`
   margin: auto 0 auto auto;
-`;
+`
 
 const LoginTabButton = styled.a`
   margin: 1rem;
   text-decoration: none;
   color: white;
-`;
+`
 
 const Title = styled.a`
   margin: auto auto auto 0;
@@ -47,18 +47,14 @@ const Title = styled.a`
   font-size: 1.625rem;
   color: white;
   text-decoration: none;
-`;
+`
 
 export default function Header() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
     axios
-      .post(
-        `${baseURL}/me`, 
-        { }, 
-        { withCredentials: true },
-      )
+      .post(`${baseURL}/me`, {}, { withCredentials: true })
       .then((value) => {
         setUser(value.data)
       })
@@ -69,19 +65,23 @@ export default function Header() {
 
   useEffect(() => {
     console.log(user)
-  },[user])
+  }, [user])
 
   return (
     <HeaderContainer>
       <HeaderContentsContainer>
-        <Title href={"/"}>Record</Title>
+        <Title href={'/'}>Record</Title>
         <HeaderLoginContainer>
-          {user ? 
-            (<LoginTabButton href={`/user/${user.id}`}>{user.name}</LoginTabButton>) : 
-            (<>
-              <LoginTabButton href={"/login"}>로그인</LoginTabButton>
-              <LoginTabButton href={"/register"}>회원가입</LoginTabButton>
-            </>)}
+          {user ? (
+            <LoginTabButton href={`/user/${user.id}`}>
+              {user.name}
+            </LoginTabButton>
+          ) : (
+            <>
+              <LoginTabButton href={'/login'}>로그인</LoginTabButton>
+              <LoginTabButton href={'/register'}>회원가입</LoginTabButton>
+            </>
+          )}
         </HeaderLoginContainer>
       </HeaderContentsContainer>
     </HeaderContainer>

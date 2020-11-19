@@ -1,11 +1,11 @@
 import { useEffect, useRef, useCallback } from 'react'
 
-import styled from "styled-components";
+import styled from 'styled-components'
 
-import CodeMirror from 'codemirror';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/mode/markdown/markdown';
-import 'codemirror/addon/display/placeholder';
+import CodeMirror from 'codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/markdown/markdown'
+import 'codemirror/addon/display/placeholder'
 
 const MarkdownEditorBlock = styled.div`
   flex: 1; /* flex: 1 1 0 */
@@ -45,49 +45,49 @@ const MarkdownEditorBlock = styled.div`
       font-style: italic;
     }
   }
-`;
+`
 
-export default function MarkdownEditor ({
+export default function MarkdownEditor({
   editorRef,
   style,
   className,
   onChangeMarkdown,
   initialMarkdown,
 }) {
-  const textArea = useRef(null);
-  const codemirror = useRef(null);
+  const textArea = useRef(null)
+  const codemirror = useRef(null)
 
   const onChange = useCallback(
     (cm) => {
-      onChangeMarkdown(cm.getValue());
+      onChangeMarkdown(cm.getValue())
     },
     [onChangeMarkdown],
-  );
+  )
 
   // initialize editor
   useEffect(() => {
-    if (!textArea.current) return;
+    if (!textArea.current) return
     const cm = CodeMirror.fromTextArea(textArea.current, {
       mode: 'markdown',
       theme: 'one-light',
       lineWrapping: true,
-    });
-    codemirror.current = cm;
-    cm.focus();
-    cm.on('change', onChange);
+    })
+    codemirror.current = cm
+    cm.focus()
+    cm.on('change', onChange)
 
     if (initialMarkdown) {
-      cm.setValue(initialMarkdown);
+      cm.setValue(initialMarkdown)
     }
 
     return () => {
-      cm.toTextArea();
-    };
-  }, [initialMarkdown, onChange]);
+      cm.toTextArea()
+    }
+  }, [initialMarkdown, onChange])
 
   return (
-    <MarkdownEditorBlock ref={editorRef} style={style} className={className}> 
+    <MarkdownEditorBlock ref={editorRef} style={style} className={className}>
       <textarea ref={textArea} style={{ border: 'none', display: 'none' }} />
     </MarkdownEditorBlock>
-  );
-};
+  )
+}

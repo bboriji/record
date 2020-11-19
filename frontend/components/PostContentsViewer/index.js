@@ -1,9 +1,9 @@
-import { useRef, useEffect } from 'react' 
+import { useRef, useEffect } from 'react'
 
-import hljs from "highlight.js";
-import markdown from "markdown-it";
+import hljs from 'highlight.js'
+import markdown from 'markdown-it'
 
-import * as S from "./style";
+import * as S from './style'
 
 const md = new markdown({
   highlight: (str, lang) => {
@@ -12,24 +12,22 @@ const md = new markdown({
         return (
           '<pre class="hljs"><code>' +
           hljs.highlight(lang, str, true).value +
-          "</code></pre>"
-        );
+          '</code></pre>'
+        )
       } catch (__) {}
     }
 
     return (
-      '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + "</code></pre>"
-    );
+      '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
+    )
   },
-});
+})
 
-
-
-export default function PostContentsViewer ({ viewerRef, contents, title }) {
+export default function PostContentsViewer({ viewerRef, contents, title }) {
   return (
     <S.PostContentsViewer ref={viewerRef}>
-      { title ? <S.PostTitleViewer value={title}></S.PostTitleViewer> : <></> }
+      {title ? <S.PostTitleViewer value={title}></S.PostTitleViewer> : <></>}
       <S.Contents dangerouslySetInnerHTML={{ __html: md.render(contents) }} />
     </S.PostContentsViewer>
-  );
+  )
 }

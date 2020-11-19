@@ -6,16 +6,16 @@ const getPosts = async () => {
 
 const getPost = async (id) => {
   return await Post.findOne({
-    where: { id }
+    where: { id },
   })
 }
 
 const getUserPostsByUserId = async (userid) => {
   const post = await Post.findAll({
-    where: { userid }
+    where: { userid },
   })
   // 만약 포스트가 없으면 null 을 리턴한다
-  if(post.length === 0) {
+  if (post.length === 0) {
     return null
   }
   return post
@@ -24,24 +24,27 @@ const getUserPostsByUserId = async (userid) => {
 const createAndUpdatePost = async (postDTO) => {
   const { postid, title, contents, userid } = postDTO
 
-  let post = null;
+  let post = null
 
   if (postid !== undefined) {
-    post = await Post.update({ title, contents }, {
-      where: {
-        id: postid
-      }
-    })
+    post = await Post.update(
+      { title, contents },
+      {
+        where: {
+          id: postid,
+        },
+      },
+    )
   } else {
     post = await Post.create({ title, contents, userid })
   }
 
-  return post;
+  return post
 }
 
-module.exports = { 
-  getPosts, 
-  getPost, 
-  getUserPostsByUserId, 
-  createAndUpdatePost 
+module.exports = {
+  getPosts,
+  getPost,
+  getUserPostsByUserId,
+  createAndUpdatePost,
 }

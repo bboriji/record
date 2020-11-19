@@ -11,10 +11,7 @@ const jwtPrivateKey = fs
   .readFileSync(path.join(process.cwd(), 'src/etc/jwt/private.key'))
   .toString()
 
-  const generateJWT = (
-  values,
-  expiresIn = '365d',
-) =>
+const generateJWT = (values, expiresIn = '365d') =>
   new Promise((resolve, reject) => {
     JWT.sign(
       values,
@@ -40,5 +37,5 @@ const verifyJWT = (token) =>
 
 module.exports = {
   generateJWT,
-  verifyJWT
+  verifyJWT,
 }

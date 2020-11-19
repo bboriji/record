@@ -6,13 +6,13 @@ import PostEditContainer from '../../../containers/PostEditContainer'
 export default function PostEdit({ data }) {
   return (
     <>
-      <PostEditContainer initPost={data}/>
+      <PostEditContainer initPost={data} />
     </>
   )
 }
 
 export async function getServerSideProps(context) {
-  const { id } = context.params 
+  const { id } = context.params
   let result = null
 
   if (!isNaN(id)) {

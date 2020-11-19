@@ -1,11 +1,11 @@
 import 'next'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-import { Input, Button } from 'antd';
-import styled from 'styled-components';
+import { Input, Button } from 'antd'
+import styled from 'styled-components'
 
-import { baseURL } from '../common/api';
+import { baseURL } from '../common/api'
 
 const RegisterLayout = styled.div`
   width: 100%;
@@ -27,7 +27,6 @@ const InputHeaderText = styled.div`
   display: flex;
 `
 
-
 export default function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -38,11 +37,11 @@ export default function Register() {
   const [isLogin, setLogin] = useState(null)
 
   useEffect(() => {
-    if(isFetch)
+    if (isFetch)
       axios
         .post(
-          `${baseURL}/register`, 
-          { email, password, name }, 
+          `${baseURL}/register`,
+          { email, password, name },
           { withCredentials: true },
         )
         .then((value) => {
@@ -55,8 +54,8 @@ export default function Register() {
           setFetch(false)
         })
   }, [isFetch])
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     if (isLogin) {
       alert('로그인해주세요')
       window.location = '/login'
@@ -70,25 +69,33 @@ export default function Register() {
         <Input
           placeholder={'이름'}
           value={name}
-          onChange={(e) => { setName(e.target.value) }}
+          onChange={(e) => {
+            setName(e.target.value)
+          }}
         />
         <InputHeaderText>이메일</InputHeaderText>
         <Input
           placeholder={'이메일'}
           value={email}
-          onChange={(e) => { setEmail(e.target.value) }}
+          onChange={(e) => {
+            setEmail(e.target.value)
+          }}
         />
         <InputHeaderText>비밀번호</InputHeaderText>
         <Input
           placeholder={'비밀번호'}
           value={password}
-          onChange={(e) => { setPassword(e.target.value) }}
+          onChange={(e) => {
+            setPassword(e.target.value)
+          }}
         />
         <InputHeaderText>비밀번호 확인</InputHeaderText>
         <Input
           placeholder={'비밀번호 확인'}
           value={repassword}
-          onChange={(e) => { setRePassword(e.target.value) }}
+          onChange={(e) => {
+            setRePassword(e.target.value)
+          }}
         />
         <Button onClick={() => setFetch(true)}>회원가입</Button>
       </InputContainer>

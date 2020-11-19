@@ -10,7 +10,7 @@ import { tabSize, screenSize } from '../common/constant'
 export const DefaultContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 `
 
 export const ContentsContainer = styled.div`
@@ -39,10 +39,8 @@ export default function PageLayout({ children, title }) {
         `}</style>
       </Head>
       <DefaultContainer>
-        <Header/>
-        <ContentsContainer>
-          {children}
-        </ContentsContainer>
+        <Header />
+        <ContentsContainer>{children}</ContentsContainer>
       </DefaultContainer>
     </>
   )

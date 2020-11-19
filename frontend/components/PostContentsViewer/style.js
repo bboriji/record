@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const PostTitleViewer = styled.input`
   width: 100%;
@@ -11,9 +11,9 @@ export const PostTitleViewer = styled.input`
   -moz-box-shadow: none;
   box-shadow: none;
 
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕,
-    "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum,
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 나눔고딕,
+    'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움, Dotum,
     Tahoma, Geneva, sans-serif;
   font-size: 2rem;
   margin: 3rem 1.5rem 0 1.5rem;
@@ -31,9 +31,9 @@ export const PostContentsViewer = styled.div`
 
 export const Contents = styled.div`
   margin-top: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕,
-    "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum,
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 나눔고딕,
+    'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움, Dotum,
     Tahoma, Geneva, sans-serif;
   font-size: 1.125rem;
   line-height: 2rem;
@@ -98,7 +98,7 @@ export const Contents = styled.div`
   hr:after,
   hr:before {
     display: table;
-    content: "";
+    content: '';
   }
   hr:after {
     clear: both;
@@ -369,4 +369,4 @@ export const Contents = styled.div`
   .hljs-link {
     text-decoration: underline;
   }
-`;
+`

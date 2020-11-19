@@ -31,19 +31,19 @@ export default function PostEditContainer({ initPost }) {
     if (!submit) return;
     console.log(submit)
     axios.post('https://fog.naora.dev/api/post/write', {
-      postid: initPost ? initPost.id : undefined,
-      title,
-      contents
-    }, { 
-      withCredentials: true 
-    }).then((value) => {
-      alert('글이 등록되었습니다.')
-      window.location = '/'
-    }).catch((err) => {
-      alert('글 등록에 실패했습니다.')
-    }).finally(() => {
-      setSubmit(false)
-    })
+        postid: initPost ? initPost.id : undefined,
+        title,
+        contents
+      }, { 
+        withCredentials: true 
+      }).then((value) => {
+        alert('글이 등록되었습니다.')
+        window.location = '/'
+      }).catch((err) => {
+        alert('글 등록에 실패했습니다.')
+      }).finally(() => {
+        setSubmit(false)
+      })
   }, [submit, setSubmit])
 
   return (

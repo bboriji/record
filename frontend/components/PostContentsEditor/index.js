@@ -16,11 +16,14 @@ const PostTitleEditor = ({ initText, onChangeTitle }) => (
 
 const PostEditHeader = ({ onClickSubmit, isNewPost }) => (
     <S.PostEditHeaderContainer>
-      <Button style={{
-        fontSize: '1rem',
-        fontWeight: "bold",
-        padding: "0px 1.25rem"
-      }}>나가기</Button>
+      <Button 
+        href={'/'}
+        style={{
+          fontSize: '1rem',
+          fontWeight: "bold",
+          padding: "0px 1.25rem"
+        }}
+      >나가기</Button>
       <Button 
         type={"primary"}
         style={{

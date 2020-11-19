@@ -71,11 +71,12 @@ export default function PostEditContainer({ initPost }) {
           onChangeMarkdown={setContents}
           onClickSubmit={setSubmit}
         />
-        <PostContentsViewer
-          viewerRef={viewerRef}
-          contents={contents}
-          title={title}
-        />
+        <S.PostViewerContainer ref={viewerRef}>
+          <PostContentsViewer
+            contents={contents}
+            title={title}
+          />
+        </S.PostViewerContainer>
       </S.PostEditContainer>
     </>
   )

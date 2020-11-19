@@ -1,5 +1,3 @@
-import { useRef, useEffect } from 'react'
-
 import hljs from 'highlight.js'
 import markdown from 'markdown-it'
 
@@ -23,11 +21,11 @@ const md = new markdown({
   },
 })
 
-export default function PostContentsViewer({ viewerRef, contents, title }) {
+export default function PostContentsViewer({ contents, title }) {
   return (
-    <S.PostContentsViewer ref={viewerRef}>
+    <>
       {title ? <S.PostTitleViewer value={title}></S.PostTitleViewer> : <></>}
       <S.Contents dangerouslySetInnerHTML={{ __html: md.render(contents) }} />
-    </S.PostContentsViewer>
+    </>
   )
 }

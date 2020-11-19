@@ -1,16 +1,7 @@
 import 'next'
 import axios from 'axios'
-
 import { Card } from 'antd'
 import PageLayout from '../containers/PageLayout'
-
-const gridStyle = {
-  width: '20rem',
-  height: '20rem',
-  overflow: 'hidden',
-  textoverflow: 'ellipsis',
-  margin: '1%',
-}
 
 export default function Home({ data }) {
   return (

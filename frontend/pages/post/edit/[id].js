@@ -1,14 +1,9 @@
 import 'next'
 import axios from 'axios'
-
 import PostEditContainer from '../../../containers/PostEditContainer'
 
 export default function PostEdit({ data }) {
-  return (
-    <>
-      <PostEditContainer initPost={data} />
-    </>
-  )
+  return <PostEditContainer initPost={data} />
 }
 
 export async function getServerSideProps(context) {

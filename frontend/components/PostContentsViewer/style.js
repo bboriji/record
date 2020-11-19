@@ -21,14 +21,6 @@ export const PostTitleViewer = styled.input`
   background-color: #f6f6f6;
 `
 
-export const PostContentsViewer = styled.div`
-  flex: 1; /* flex: 1 1 0 */
-  overflow: scroll;
-  width: 50%;
-  height: 100%;
-  background-color: #f6f6f6;
-`
-
 export const Contents = styled.div`
   margin-top: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',

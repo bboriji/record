@@ -1,5 +1,4 @@
 import 'next'
-
 import PageLayout from '../../containers/PageLayout'
 
 export default function User({}) {

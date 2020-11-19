@@ -85,6 +85,7 @@ export default function Register() {
         <Input
           placeholder={'비밀번호'}
           value={password}
+          type={'password'}
           onChange={(e) => {
             setPassword(e.target.value)
           }}

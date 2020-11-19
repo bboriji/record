@@ -32,6 +32,7 @@ export const Contents = styled.div`
   word-break: keep-all;
   overflow-wrap: break-word;
   padding: 1.125rem;
+  
   details {
     display: block;
   }

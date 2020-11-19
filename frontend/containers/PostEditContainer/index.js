@@ -29,7 +29,7 @@ export default function PostEditContainer({ initPost }) {
 
   useEffect(() => {
     if (!submit) return
-    console.log(submit)
+    
     axios
       .post(
         'https://fog.naora.dev/api/post/write',

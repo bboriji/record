@@ -34,6 +34,9 @@ export default function PageLayout({ children, title }) {
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
+        <style>{`
+            #__next { height: 100% }
+        `}</style>
       </Head>
       <DefaultContainer>
         <Header/>

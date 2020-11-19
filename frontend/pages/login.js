@@ -7,8 +7,6 @@ import styled from 'styled-components';
 
 import { baseURL } from '../common/api';
 
-<div></div>
-
 const LoginLayout = styled.div`
   width: 100%;
   height: 100%;
@@ -73,6 +71,7 @@ export default function Login() {
           <Input
             placeholder={'비밀번호'}
             value={password}
+            type={'password'}
             onChange={(e) => { setPassword(e.target.value) }}
           />
           <Button onClick={() => setFetch(true)}>로그인</Button>

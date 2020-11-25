@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    command: ["yarn", "start"]
+    ports:
+      - 3000:3000
+
+  backend:
+    build:
+      context: ./backend
+    command: ["yarn", "dev"]
+    volumes: 
+      - ./:/dist
+    ports:
+      - 13000:13000
+
+  proxy:
+    image: nginx:mainline
+    restart: always
+    volumes: 
+      - ./proxy/default.conf:/etc/nginx/conf.d/default.conf
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+      - /home/ubuntu/ssl:/etc/nginx/ssl
+    ports:
+      - 443:443
+      - 80:80
+    depends_on:
+      - backend

@@ -7,15 +7,14 @@ const getPosts = async () => {
 const getPost = async (id) => {
   return await Post.findOne({
     where: { id },
-    include: [
-      { as: 'user', model: User },
-    ]
+    include: [{ as: 'user', model: User,  exclude: ['passwd']  }],
   })
 }
 
 const getUserPostsByUserId = async (userid) => {
   const post = await Post.findAll({
     where: { userid },
+    include: [{ as: 'user', model: User,  exclude: ['passwd']  }],
   })
   // 만약 포스트가 없으면 null 을 리턴한다
   if (post.length === 0) {

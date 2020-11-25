@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(
+  const Post = sequelize.define(
     'Post',
     {
       id: {
@@ -36,4 +36,12 @@ module.exports = function (sequelize, DataTypes) {
       paranoid: true,
     },
   )
+
+  Post.associate = function (models) {
+    Post.belongsTo(models.User, {
+      foreignKey: 'userid',
+    })
+  }
+
+  return Post
 }

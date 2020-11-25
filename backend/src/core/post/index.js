@@ -1,4 +1,4 @@
-const { Post } = require('../../models')
+const { Post, User } = require('../../models')
 
 const getPosts = async () => {
   return await Post.findAll()
@@ -7,6 +7,9 @@ const getPosts = async () => {
 const getPost = async (id) => {
   return await Post.findOne({
     where: { id },
+    include: [
+      { as: 'user', model: User },
+    ]
   })
 }
 

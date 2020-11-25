@@ -1,11 +1,16 @@
+import { useContext } from 'react'
+
 import CardList from '../../components/CardList'
 import EmailBtn from '../../components/EmailBtn'
 import GithubBtn from '../../components/GithubBtn'
 import PageLayout from '../PageLayout'
 
 import * as S from './style'
+import { AppState } from '../../AppStore'
 
 export default function UserViewerContainer({ posts, user }) {
+  const storedUserState = useContext(AppState)
+
   return (
     <PageLayout title={`Record - ${user.name}`}>
       <S.UserProfileContainer>
@@ -17,6 +22,11 @@ export default function UserViewerContainer({ posts, user }) {
             <GithubBtn href={`https://github.com/${user.githubLink}`} />
           )}
         </S.UserBtnContainer>
+        {storedUserState?.id === user.id ? (
+          <S.EditBtn href={`/user/edit`}>프로필 수정하기</S.EditBtn>
+        ) : (
+          <></>
+        )}
       </S.UserProfileContainer>
       <S.Line />
       <S.UserPostContainer>

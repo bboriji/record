@@ -69,4 +69,7 @@ export const Line = styled.div`
   margin-bottom: 1.5rem;
 `
 
-export const GithubBtn = styled.a``
+export const EditBtn = styled.a`
+  margin-right: 1rem;
+  color: ${mainBlue};
+`

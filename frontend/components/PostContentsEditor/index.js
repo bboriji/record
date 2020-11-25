@@ -64,12 +64,12 @@ export default function PostContentsEditor({
   return (
     <S.PostContentsEditorContainer>
       <PostEditHeader onClickSubmit={onClickSubmit} initPost={initPost} />
-      <S.ScrollableEditor>
+      <S.ScrollableEditor ref={editorRef}>
         <PostTitleEditor
           initText={initialTitle}
           onChangeTitle={onChangeTitle}
         />
-        <S.PostContentsEditor ref={editorRef}>
+        <S.PostContentsEditor>
           <MarkdownEditor
             onChangeMarkdown={onChangeMarkdown}
             initialMarkdown={initialMarkdown}

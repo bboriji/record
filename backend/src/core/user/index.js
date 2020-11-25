@@ -69,9 +69,28 @@ const registerUser = async (email, password, name) => {
   return others
 }
 
+const editUserProfile = async ({id, profile, githubLink, name}) => {
+  const existUser = await User.findOne({
+    where: { id },
+  })
+  if (!existUser) throw new Error('유저가 존재하지 않습니다.')
+
+  user = await User.update(
+    {
+      profile,
+      githubLink,
+      name,
+    },
+    { where: { id } },
+  )
+
+  return user
+}
+
 module.exports = {
   getUserWithNoPrivateInfo,
   getUserByEmailWithNoPrivateInfo,
+  editUserProfile,
   loginUser,
   registerUser,
 }

@@ -18,7 +18,6 @@ router.get('/post/:id', async (req, res) => {
 router.post('/post/write', async (req, res) => {
   try {
     const authToken = req.cookies['record_auth']
-    console.log(authToken)
     if (!authToken) {
       return res.sendStatus(401)
     }

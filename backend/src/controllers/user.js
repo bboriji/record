@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const { getUserWithNoPrivateInfo, editUserProfile } = require('../core/user')
-const { getUserPostsByUserName } = require('../core/post')
+const { getUserPostsByUserId } = require('../core/post')
 
 const { verifyJWT } = require('../utils/jwt')
 
@@ -14,7 +14,7 @@ router.get('/user/:id', async (req, res) => {
 
 router.get('/user/:id/posts', async (req, res) => {
   const id = req.params['id']
-  const user = await getUserPostsByUserName(id)
+  const user = await getUserPostsByUserId(id)
   res.send(user)
 })
 

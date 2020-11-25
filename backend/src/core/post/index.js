@@ -11,13 +11,9 @@ const getPost = async (id) => {
   })
 }
 
-const getUserPostsByUserName = async (name) => {
-  const user = await User.findOne({
-    where: { name },
-  })
-
+const getUserPostsByUserId = async (userid) => {
   const post = await Post.findAll({
-    where: { userid: user.userid },
+    where: { userid },
     include: [{ model: User, attributes: { exclude: ['passwd'] } }],
   })
   // 만약 포스트가 없으면 null 을 리턴한다
@@ -51,6 +47,6 @@ const createAndUpdatePost = async (postDTO) => {
 module.exports = {
   getPosts,
   getPost,
-  getUserPostsByUserName,
+  getUserPostsByUserId,
   createAndUpdatePost,
 }

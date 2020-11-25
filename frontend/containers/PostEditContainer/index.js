@@ -47,7 +47,7 @@ export default function PostEditContainer({ initPost }) {
         window.location = '/'
       })
       .catch((err) => {
-        alert('글 등록에 실패했습니다.')
+        alert('글 등록에 실패했습니다. 로그인을 하세요')
       })
       .finally(() => {
         setSubmit(false)

@@ -31,7 +31,6 @@ export default function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [repassword, setRePassword] = useState('')
 
   const [isFetch, setFetch] = useState(false)
   const [isLogin, setLogin] = useState(null)
@@ -88,14 +87,6 @@ export default function Register() {
           type={'password'}
           onChange={(e) => {
             setPassword(e.target.value)
-          }}
-        />
-        <InputHeaderText>비밀번호 확인</InputHeaderText>
-        <Input
-          placeholder={'비밀번호 확인'}
-          value={repassword}
-          onChange={(e) => {
-            setRePassword(e.target.value)
           }}
         />
         <Button onClick={() => setFetch(true)}>회원가입</Button>

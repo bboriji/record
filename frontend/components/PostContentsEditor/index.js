@@ -1,25 +1,35 @@
 import * as S from './style'
 import { Button } from 'antd'
 import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
+
 const MarkdownEditor = dynamic(() => import('../MarkdownEditor'), {
   ssr: false,
 })
 
-const PostTitleEditor = ({ initText, onChangeTitle }) => (
-  <>
-    <S.PostTitleEditor
-      type={'text'}
-      defaultValue={initText}
-      onChange={(event) => onChangeTitle(event.target.value)}
-      placeholder={'제목을 입력하세요.'}
-    />
-  </>
-)
+const PostTitleEditor = ({ initText, onChangeTitle }) => {
+  useEffect(() => {
+    if (initText) {
+      onChangeTitle(initText)
+    }
+  }, [])
 
-const PostEditHeader = ({ onClickSubmit, isNewPost }) => (
+  return (
+    <>
+      <S.PostTitleEditor
+        type={'text'}
+        defaultValue={initText}
+        onChange={(event) => onChangeTitle(event.target.value)}
+        placeholder={'제목을 입력하세요.'}
+      />
+    </>
+  )
+}
+
+const PostEditHeader = ({ onClickSubmit, initPost }) => (
   <S.PostEditHeaderContainer>
     <Button
-      href={'/'}
+      href={!!initPost ? `/post/${initPost.id}` : '/'}
       style={{
         fontSize: '1rem',
         fontWeight: 'bold',
@@ -37,7 +47,7 @@ const PostEditHeader = ({ onClickSubmit, isNewPost }) => (
       }}
       onClick={() => onClickSubmit(true)}
     >
-      {isNewPost ? `수정하기` : `글쓰기`}
+      {!!initPost ? `수정하기` : `글쓰기`}
     </Button>
   </S.PostEditHeaderContainer>
 )
@@ -53,7 +63,7 @@ export default function PostContentsEditor({
 }) {
   return (
     <S.PostContentsEditorContainer>
-      <PostEditHeader onClickSubmit={onClickSubmit} isNewPost={!!initPost} />
+      <PostEditHeader onClickSubmit={onClickSubmit} initPost={initPost} />
       <S.ScrollableEditor>
         <PostTitleEditor
           initText={initialTitle}

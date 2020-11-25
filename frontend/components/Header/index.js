@@ -14,7 +14,7 @@ export default function Header() {
         <S.HeaderLoginContainer>
           {user ? (
             <>
-              <S.LoginTabButton href={`/user/${user.id}`}>
+              <S.LoginTabButton href={`/user/${user.name}`}>
                 {user.name}
               </S.LoginTabButton>
               <S.LoginTabButton href={`/post/edit/new`}>

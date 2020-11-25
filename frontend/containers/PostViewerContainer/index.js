@@ -13,7 +13,7 @@ export default function PostViewerContainer({ post }) {
     <PageLayout title={`Record - ${post.title}`}>
       <S.Title>{post.title}</S.Title>
       <S.UserContentsContainer>
-        <S.UserName href={`/user/${post.User.id}`}>{post.User.name}</S.UserName>
+        <S.UserName href={`/user/${post.User.name}`}>{post.User.name}</S.UserName>
         <S.Date>{`${date.getFullYear()}년 ${
           date.getMonth() + 1
         }월 ${date.getDate()}일`}</S.Date>

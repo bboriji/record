@@ -1,9 +1,9 @@
 const { User } = require('../../models')
 const bcrypt = require('bcrypt')
 
-const getUserWithNoPrivateInfo = async (name) => {
+const getUserWithNoPrivateInfo = async (id) => {
   const user = await User.findOne({
-    where: { name },
+    where: { id },
     attributes: { exclude: ['passwd'] },
   })
 

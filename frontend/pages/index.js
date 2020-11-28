@@ -33,7 +33,7 @@ export default function Home({ data }) {
                         <h3 className="post_title" >
                         {post.title}
                           <div>
-                            <h5 className="post_contents">{post.contents.slice(0, 100)}</h5>
+                            <h5 className="post_contents">{post.contents.slice(0, 150)}...</h5>
                             <h5 className="post_name">{post.username}</h5>
                             <h5 className="post_createdAt">{post.createdAt}</h5>
                           </div>

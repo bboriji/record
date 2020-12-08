@@ -17,7 +17,7 @@ export default function RegisterContainer() {
       .then((value) => {
         setRegister(value)
       })
-      .catch((e) => {
+      .catch((e) => { 
         alert('회원가입 실패')
       })
   }

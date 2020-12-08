@@ -59,6 +59,7 @@ router.delete('/post/:id', async (req, res) => {
 
     res.sendStatue(204)
   } catch (err) {
+    console.log(err)
     res.sendStatus(500)
   }
 })

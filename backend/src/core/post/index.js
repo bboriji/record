@@ -49,9 +49,12 @@ const createAndUpdatePost = async (postDTO) => {
 }
 
 const deletePost = async (id, userid) => {
+  console.log(id, userid)
+  
   const foundPost = await Post.findOne({
     where: { id, userid },
   })
+
   if (!foundPost) {
     throw new Error('post not exist')
   }

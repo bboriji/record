@@ -57,7 +57,7 @@ router.delete('/post/:id', async (req, res) => {
     const postId = req.params['id']
     await deletePost(postId, userId)
 
-    res.sendStatue(204)
+    res.sendStatus(204)
   } catch (err) {
     console.log(err)
     res.sendStatus(500)

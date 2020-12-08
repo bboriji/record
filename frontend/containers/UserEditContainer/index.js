@@ -10,12 +10,10 @@ import { AppState } from '../../AppStore'
 
 export default function UserEditContainer() {
   const user = useContext(AppState)
-  console.log(user)
-
   const { handleSubmit, control, errors } = useForm()
   const [isRegister, setRegister] = useState(null)
 
-  const onLoginSubmit = (data) => {
+  const onUserEditSubmit = (data) => {
     axios
       .post(`${baseURL}/user/edit`, data, { withCredentials: true })
       .then((value) => {
@@ -29,13 +27,13 @@ export default function UserEditContainer() {
   useEffect(() => {
     if (isRegister) {
       alert('프로필이 수정되었습니다.')
-      window.location = `/user/${user.name}`
+      window.location = `/user/${user.id}`
     }
   }, [isRegister])
 
   return (
     <S.UserEditLayout>
-      {user && <S.InputContainer onSubmit={handleSubmit(onLoginSubmit)}>
+      {user && <S.InputContainer onSubmit={handleSubmit(onUserEditSubmit)}>
         <S.Title href={'/'}>Record</S.Title>
         <S.SubTitle>프로필수정</S.SubTitle>
         <S.InputHeaderText>유저 이름</S.InputHeaderText>
@@ -61,10 +59,11 @@ export default function UserEditContainer() {
           resize="none"
           control={control}
           name="profile"
-          render={({ ref }) => (
+          render={({ onChange, value }) => (
             <Input.TextArea
               style={{ resize: 'none', height: '5rem' }}
-              ref={ref}
+              value={value}
+              onChange={value => onChange(value)}
               defaultValue={user.profile}
               placeholder="자기소개"
             />

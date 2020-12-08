@@ -44,9 +44,25 @@ const createAndUpdatePost = async (postDTO) => {
   return post
 }
 
+const deletePost = async (postId, userId) => {
+  const foundPost = await Post.findOne({
+    where: { id: postId, userId },
+  })
+  if (!foundPost) {
+    throw new Error('post not exist')
+  }
+
+  await Post.destroy({
+    where: { id: postId },
+  })
+
+  return
+}
+
 module.exports = {
   getPosts,
   getPost,
+  deletePost,
   getUserPostsByUserId,
   createAndUpdatePost,
 }

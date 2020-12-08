@@ -1,27 +1,27 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const { 
+const {
   getUserByEmailWithNoPrivateInfo,
-  loginUser, 
-  registerUser 
-} = require('../core/user');
+  loginUser,
+  registerUser,
+} = require('../core/user')
 
-const { verifyJWT, generateJWT } = require("../utils/jwt");
+const { verifyJWT, generateJWT } = require('../utils/jwt')
 
 /**
  * 로그인 여부 확인용 me 쿼리
  */
-router.post("/me", async (req, res) => {
-  const authToken = req.cookies["record_auth"]
+router.post('/me', async (req, res) => {
+  const authToken = req.cookies['record_auth']
 
   if (!authToken) {
     return res.sendStatus(401)
   }
 
-  const { email } = await verifyJWT(authToken);
+  const { email } = await verifyJWT(authToken)
   const user = await getUserByEmailWithNoPrivateInfo(email)
-  
+
   if (user) {
     return res.send(user)
   }
@@ -31,13 +31,20 @@ router.post("/me", async (req, res) => {
 /**
  * 로그인 하는 메소드
  */
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body 
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body
+  if (email === undefined || password === undefined) return res.sendStatus(401)
+
   const user = await loginUser(email, password)
 
   if (user) {
     const jwt = await generateJWT(user)
-    return res.cookie("record_auth", jwt).send()
+    return res
+      .cookie('record_auth', jwt, {
+        sameSite: 'none',
+        secure: true,
+      })
+      .send(user)
   }
 
   res.sendStatus(401)
@@ -46,22 +53,22 @@ router.post("/login", async (req, res) => {
 /**
  * 로그아웃 및 쿠키 삭제함
  */
-router.post("/logout", async (req, res) => {
-  res.clearCookie("record_auth").send()
+router.post('/logout', async (req, res) => {
+  res.clearCookie('record_auth').send()
 })
 
 /**
  * 회원가입
  */
-router.post("/register", async (req, res) => {
+router.post('/register', async (req, res) => {
   const { email, password, name } = req.body
 
   try {
     const user = await registerUser(email, password, name)
     res.send(user)
-  } catch(err) {
+  } catch (err) {
     res.sendStatus(400)
   }
 })
 
-module.exports = router;
+module.exports = router

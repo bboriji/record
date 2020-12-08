@@ -1,10 +1,15 @@
 {
+  "git.autofetch": true,
+  "explorer.confirmDelete": false,
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+  "prettier.javascriptEnable": ["javascript", "javascriptreact"],
+  "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
-    "editor.formatOnSave": false
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.packageManager": "yarn"
+  "prettier.tabWidth": 4,
+  "prettier.endOfLine": "auto"
 }

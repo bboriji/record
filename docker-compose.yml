@@ -1,6 +1,13 @@
 version: "3.7"
 
 services:
+  frontend:
+    build:
+      context: ./frontend
+    command: ["yarn", "start"]
+    ports:
+      - 3000:3000
+
   backend:
     build:
       context: ./backend

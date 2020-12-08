@@ -1,28 +1,16 @@
 import 'next'
 import axios from 'axios'
-
-import { Card } from 'antd'
-import PageTemplate from '../containers/PageLayout'
+import PostListContainer from '../containers/PostListContainer'
 
 export default function Home({ data }) {
-  console.log(data)
-
-  return (
-    <PageTemplate title={'Record'}>
-        {data ? data.map(d => (
-          <Card>
-            <h3>{d.title}</h3>
-            <div>{d.contents}</div>
-          </Card>
-        )) : <p>포스트가 없습니다.</p>}
-    </PageTemplate>
-  )
+  const { posts } = data
+  return <PostListContainer posts={posts} />
 }
 
-export async function getServerSideProps(context) {
-  const { data } = await axios.get("https://fog.naora.dev/api/posts")
+export async function getServerSideProps() {
+  const { data: posts } = await axios.get('https://fog.naora.dev/api/posts')
 
   return {
-    props: { data }, // will be passed to the page component as props
+    props: { data: { posts } }, // will be passed to the page component as props
   }
 }

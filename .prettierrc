@@ -4,7 +4,6 @@
   "bracketSpacing": true,
   "useTabs": false,
   "tabWidth": 2,
-  "parser": "typescript",
   "singleQuote": true,
   "trailingComma": "all"
 }

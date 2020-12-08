@@ -5,7 +5,7 @@
             "name": "Docker: Attach to Node",
             "type": "node",
             "request": "attach",
-            "port": 9229,
+            "port": 8080,
             "address": "localhost",
             "localRoot": "${workspaceFolder}",
             "remoteRoot": "/server",

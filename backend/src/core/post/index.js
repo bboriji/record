@@ -1,29 +1,75 @@
-const { Post } = require('../../models')
+const { Post, User } = require('../../models')
 
 const getPosts = async () => {
-  return await Post.findAll()
+  return await Post.findAll({
+    include: [{ model: User, attributes: { exclude: ['passwd'] } }],
+    order: [['updatedAt', 'DESC']],
+  })
 }
 
 const getPost = async (id) => {
-  const post = await Post.findAll({
-    where: { id }
+  return await Post.findOne({
+    where: { id },
+    include: [{ model: User, attributes: { exclude: ['passwd'] } }],
   })
-  // 만약 포스트가 없으면 null 을 리턴한다
-  if(post.length === 0) {
-    return null
-  }
-  return post[0]
 }
 
-const getUserPosts = async (postId, userId) => {
+const getUserPostsByUserId = async (userid) => {
   const post = await Post.findAll({
-    where: { id: postId, userId }
+    where: { userid },
+    include: [{ model: User, attributes: { exclude: ['passwd'] } }],
+    order: [['updatedAt', 'DESC']],
   })
   // 만약 포스트가 없으면 null 을 리턴한다
-  if(post.length === 0) {
+  if (post.length === 0) {
     return null
   }
-  return post[0]
+  return post
 }
 
-module.exports = { getPosts, getPost }
+const createAndUpdatePost = async (postDTO) => {
+  const { postid, title, contents, userid } = postDTO
+
+  let post = null
+
+  if (postid !== undefined) {
+    post = await Post.update(
+      { title, contents },
+      {
+        where: {
+          id: postid,
+        },
+      },
+    )
+  } else {
+    post = await Post.create({ title, contents, userid })
+  }
+
+  return post
+}
+
+const deletePost = async (id, userid) => {
+  console.log(id, userid)
+  
+  const foundPost = await Post.findOne({
+    where: { id, userid },
+  })
+
+  if (!foundPost) {
+    throw new Error('post not exist')
+  }
+
+  await Post.destroy({
+    where: { id },
+  })
+
+  return
+}
+
+module.exports = {
+  getPosts,
+  getPost,
+  deletePost,
+  getUserPostsByUserId,
+  createAndUpdatePost,
+}

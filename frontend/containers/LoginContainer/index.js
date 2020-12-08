@@ -35,7 +35,7 @@ export default function LoginContainer() {
   return (
     <S.LoginLayout>
       <S.InputContainer onSubmit={handleSubmit(onLoginSubmit)}>
-        <S.Title>Record</S.Title>
+        <S.Title href={'/'}>Record</S.Title>
         <S.SubTitle>로그인</S.SubTitle>
         <S.InputHeaderText>이메일</S.InputHeaderText>
         <Controller

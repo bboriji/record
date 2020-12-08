@@ -1,7 +1,10 @@
 const { Post, User } = require('../../models')
 
 const getPosts = async () => {
-  return await Post.findAll()
+  return await Post.findAll({
+    include: [{ model: User, attributes: { exclude: ['passwd'] } }],
+    order: [['updatedAt', 'DESC']],
+  })
 }
 
 const getPost = async (id) => {
@@ -15,6 +18,7 @@ const getUserPostsByUserId = async (userid) => {
   const post = await Post.findAll({
     where: { userid },
     include: [{ model: User, attributes: { exclude: ['passwd'] } }],
+    order: [['updatedAt', 'DESC']],
   })
   // 만약 포스트가 없으면 null 을 리턴한다
   if (post.length === 0) {

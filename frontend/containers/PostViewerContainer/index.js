@@ -42,10 +42,10 @@ export default function PostViewerContainer({ post }) {
           date.getMonth() + 1
         }월 ${date.getDate()}일`}</S.Date>
         {user?.id === post.User.id ? (
-          <>
-            <S.EditBtn href={`/post/edit/${post.id}`}>수정하기</S.EditBtn>
-            <S.EditBtn onClick={() => setDeleteBtn(true)}>삭제하기</S.EditBtn>
-          </>
+          <S.BtnContainer>
+            <S.EditBtn href={`/post/edit/${post.id}`}>수정</S.EditBtn>
+            <S.EditBtn onClick={() => setDeleteBtn(true)}>삭제</S.EditBtn>
+          </S.BtnContainer>
         ) : (
           <></>
         )}

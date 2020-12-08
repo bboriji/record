@@ -21,9 +21,13 @@ export const Date = styled.p`
   color: rgb(134, 142, 150);
 `
 
-export const EditBtn = styled.a`
+export const BtnContainer = styled.div`
   margin-left: auto;
   margin-right: 1rem;
+`
+
+export const EditBtn = styled.a`
+  margin-left: 1rem;
   color: ${mainBlue};
 `
 

@@ -3,8 +3,8 @@
 Record는 개인화된 블로그 플랫폼 서비스를 제공해주는 프로젝트이며,  
 **코드 스타일링과 SSR기반의 검색엔진에 쉽게 노출 될 수 있도록 하는 특징**을 가진 블로그 서비스를 목표로 하고 있습니다.
 
-### [Home Page](https://fog.naora.dev/)
-완성된 페이지입니다.
+### ~[Home Page](https://fog.naora.dev/)~
+현재 사용 불가.
 
 **[API 서버](https://fog.naora.dev/api)**  
 관련된 API 를 테스트해보실 수 있습니다.
